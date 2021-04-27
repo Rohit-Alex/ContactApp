@@ -1,0 +1,26 @@
+.wrapper {
+  display: flex;
+  padding: 2rem;
+  height: 10vh;
+  background-color: pink;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+}
+.headerWrapper {
+  flex: 0.5;
+  display: flex;
+  flex-wrap: wrap;
+  /* justify-content: space-around; */
+  align-items: center;
+}
+.addIconWrapper {
+  flex: 0.5;
+  display: flex;
+  justify-content: flex-end;
+}
+.contactIcon {
+}
+.addIcon {
+  font-size: 3.5rem;
+}
