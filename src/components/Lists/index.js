@@ -1,7 +1,7 @@
 import React from "react";
 import List from "./List";
 
-const Lists = ({ data, setData, setEditItem }) => {
+const Lists = ({ data, setData, setEditItem, filteredArray }) => {
   function deleteitem(id) {
     const updatedata = [...data].filter((item) => item.id !== id);
     setData(updatedata);
@@ -9,7 +9,7 @@ const Lists = ({ data, setData, setEditItem }) => {
 
   return (
     <div className="body">
-      {data.map((item) => (
+      {filteredArray?.map((item) => (
         <>
           <List
             item={item}

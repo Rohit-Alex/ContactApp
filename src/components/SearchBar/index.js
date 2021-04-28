@@ -1,8 +1,19 @@
-import React, { useState } from "react";
+import React, { useState, useCallback } from "react";
 import SearchIcon from "@material-ui/icons/Search";
+import debounce from "lodash.debounce";
 import "./style.css";
-const Search = () => {
+const Search = ({ setSearchVal }) => {
   const [inputVal, setInputVal] = useState(null);
+
+  const debouncedSave = useCallback(
+    debounce((nextVal) => setSearchVal(nextVal), 400),
+    []
+  );
+  const handleChange = (e) => {
+    const nextVal = e.target.value;
+    setInputVal(nextVal);
+    debouncedSave(nextVal);
+  };
   return (
     <div className="searchContainer">
       <SearchIcon />
@@ -11,7 +22,7 @@ const Search = () => {
         type="text"
         placeholder="Search"
         value={inputVal}
-        onChange={(e) => setInputVal(e.target.value)}
+        onChange={handleChange}
       />
     </div>
   );

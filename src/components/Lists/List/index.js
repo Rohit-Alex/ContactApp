@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 import "./style.css";
 
@@ -13,11 +13,12 @@ const List = ({ item, deleteitem, setEditItem }) => {
         </div>
         <div className="details">
           <div className="detail">
-            <h4>{item.firstName}</h4>
-            <h4>{item.LastName}</h4>
+            <h4>{item?.firstName}</h4>
+            &nbsp;&nbsp;
+            <h4>{item?.LastName}</h4>
           </div>
           <div className="number">
-            <h4>{item.mobile}</h4>
+            <h4>{item?.mobile}</h4>
           </div>
         </div>
 

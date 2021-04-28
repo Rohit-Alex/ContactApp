@@ -32,7 +32,6 @@ const Form = ({ setData }) => {
       flag = false;
     }
     if (flag) {
-      localStorage.setItem("user", JSON.stringify(user));
       const uniqueUser = { ...user, id: new Date().getTime() };
       setData((prev) => [...prev, uniqueUser]);
       history.push("/");

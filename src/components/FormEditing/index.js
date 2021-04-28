@@ -3,12 +3,7 @@ import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 import { useHistory } from "react-router";
 const FormEditing = ({ data, setData, item }) => {
   let history = useHistory();
-  const [user, setUser] = useState({
-    firstName: "",
-    lastName: "",
-    mobile: "",
-    email: "",
-  });
+  const [user, setUser] = useState(item);
 
   const [error, setError] = useState({ firstName: "", mobile: "", email: "" });
 

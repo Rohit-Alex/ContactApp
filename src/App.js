@@ -11,13 +11,27 @@ function App() {
   const userDetails = JSON.parse(localStorage.getItem("user"));
   const [data, setData] = useState([]);
   const [editItem, setEditItem] = useState(null);
+  const [searchVal, setSearchVal] = useState("");
 
+  useEffect(() => {
+    localStorage.setItem("user", JSON.stringify(data));
+  }, [data]);
+  useEffect(() => {
+    console.log(userDetails);
+    setData(userDetails);
+  }, []);
+  var filteredArray = data.filter((item) => {
+    if (searchVal === "") return item;
+    else if (item.firstName.toLowerCase().includes(searchVal?.toLowerCase()))
+      return item;
+  });
+  console.log(filteredArray);
   return (
     <div className="App">
       <BrowserRouter>
         <div className="fixedHeader">
           <Header />
-          <Search />
+          <Search setSearchVal={setSearchVal} />
         </div>
 
         <Switch>
@@ -28,7 +42,12 @@ function App() {
             <Form setData={setData} />
           </Route>
           <Route exact path="/">
-            <Lists data={data} setData={setData} setEditItem={setEditItem} />
+            <Lists
+              filteredArray={filteredArray}
+              data={data}
+              setData={setData}
+              setEditItem={setEditItem}
+            />
           </Route>
         </Switch>
       </BrowserRouter>
