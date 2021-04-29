@@ -3,7 +3,7 @@ import SearchIcon from "@material-ui/icons/Search";
 import debounce from "lodash.debounce";
 import "./style.css";
 const Search = ({ setSearchVal }) => {
-  const [inputVal, setInputVal] = useState(null);
+  const [inputVal, setInputVal] = useState("");
 
   const debouncedSave = useCallback(
     debounce((nextVal) => setSearchVal(nextVal), 400),

@@ -1,24 +1,28 @@
-import React, { useState } from "react";
-import "./style.css";
+import React, { useState, useEffect } from "react";
 import AccountCircleIcon from "@material-ui/icons/AccountCircle";
-import { useHistory } from "react-router";
-const Form = ({ setData }) => {
+import { useHistory } from "react-router-dom";
+import "./style.css";
+
+const FormEditing = ({ data, setData, item, user, setUser }) => {
   let history = useHistory();
-  const [user, setUser] = useState({
-    firstName: "",
-    lastName: "",
-    mobile: "",
-    email: "",
-  });
+
+  useEffect(() => {
+    if (Object.keys(item).length !== 0) {
+      setUser(item);
+    }
+  }, []);
+
   const [error, setError] = useState({ firstName: "", mobile: "", email: "" });
 
   const handleChange = (e) => {
     setUser({ ...user, [e.target.id]: e.target.value });
   };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     let flag = true;
-    console.log("in handle submit");
+    console.log("hello", Object.keys(item).length);
+
     if (user.firstName == "") {
       flag = false;
     }
@@ -31,17 +35,32 @@ const Form = ({ setData }) => {
       setError({ ...error, mobile: "** Enter a valid mobile number **" });
       flag = false;
     }
+
     if (flag) {
-      const uniqueUser = { ...user, id: new Date().getTime() };
-      setData((prev) => [...prev, uniqueUser]);
-      history.push("/");
+      if (Object.keys(item).length !== 0) {
+        const updatedData = [...data].map((info) => {
+          if (info === item) {
+            console.log(info);
+            info = { ...user };
+          }
+          return info;
+        });
+        setData(updatedData);
+        setUser("");
+        history.push("/");
+      } else {
+        console.log("uni", user);
+        const uniqueUser = { ...user, id: new Date().getTime() };
+        setData([...data, uniqueUser]);
+        history.push("/");
+      }
     }
   };
   return (
     <div className="full">
       <div className="AddWrapper">
         <div className="dp">
-          <AccountCircleIcon />
+          <AccountCircleIcon style={{ fontSize: "3rem" }} />{" "}
         </div>
         <div className="formWrapper">
           <form onSubmit={handleSubmit}>
@@ -49,17 +68,19 @@ const Form = ({ setData }) => {
             <input
               type="text"
               id="firstName"
-              value={user.firstName}
+              defaultValue={item.firstName}
               onChange={handleChange}
               required
             />
-            <div className="error">{error.firstName}</div>
+            <div className="error" style={{ color: "red" }}>
+              {error.firstName}
+            </div>
             <br />
             <label htmlFor="LastName"> Last Name : </label>
             <input
               type="text"
               id="LastName"
-              value={user.LastName}
+              defaultValue={item.LastName}
               onChange={handleChange}
             />
             <br />
@@ -68,7 +89,7 @@ const Form = ({ setData }) => {
             <input
               type="text"
               id="email"
-              value={user.email}
+              defaultValue={item.email}
               onChange={handleChange}
             />
             <div>{error.email}</div>
@@ -77,12 +98,14 @@ const Form = ({ setData }) => {
             <input
               type="number"
               id="mobile"
-              value={user.mobile}
+              defaultValue={item.mobile}
               onChange={handleChange}
               required
             />
-            <div className="error">{error.mobile}</div>
-            <input type="submit" value="Add" />
+            <div className="error" style={{ color: "red" }}>
+              {error.mobile}
+            </div>
+            <input className="submitBtn" type="submit" defaultValue="Update" />
           </form>
         </div>
       </div>
@@ -90,4 +113,4 @@ const Form = ({ setData }) => {
   );
 };
 
-export default Form;
+export default FormEditing;

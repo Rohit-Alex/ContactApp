@@ -1,0 +1,52 @@
+.App {
+  text-align: center;
+  background-color: lightgray;
+  min-height: 100vh;
+}
+
+.fixedHeader {
+  position: sticky;
+  z-index: 999999;
+  top: 0;
+}
+
+.mobileSearch {
+  display: none;
+}
+
+@media only screen and (max-width: 540px) {
+  .mobileSearch {
+    background-color: lightgray;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+  }
+
+  .App .searchBar {
+    display: none;
+  }
+}
+
+@media only screen and (max-width: 400px) {
+  /* .App {
+    background-color: lime;
+  } */
+  .App .listWrapper {
+    display: block;
+  }
+  .App .fullWrap {
+    height: auto;
+    border-radius: 30px;
+  }
+  .App .detail {
+    justify-content: center;
+  }
+
+  .App .btn {
+    justify-content: center;
+  }
+
+  .App .wrapper {
+    padding: 5vw;
+  }
+}

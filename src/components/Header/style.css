@@ -1,26 +1,32 @@
 .wrapper {
   display: flex;
   padding: 2rem;
-  height: 10vh;
-  background-color: pink;
+  height: 4vh;
+  background-color: #8146bd;
   flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
+  align-content: center;
 }
 .headerWrapper {
-  flex: 0.5;
+  color: white;
   display: flex;
   flex-wrap: wrap;
-  /* justify-content: space-around; */
   align-items: center;
 }
 .addIconWrapper {
-  flex: 0.5;
+  color: white;
   display: flex;
   justify-content: flex-end;
 }
-.contactIcon {
-}
+
 .addIcon {
   font-size: 3.5rem;
+}
+
+.searchBar {
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+  width: 40%;
 }

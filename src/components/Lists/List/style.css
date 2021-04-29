@@ -1,20 +1,29 @@
 .fullWrap {
-  margin-top: 1.2rem;
+  height: auto;
   display: grid;
   place-items: center;
+  border: 1px solid lightgray;
+  border-radius: 100px;
+  margin-top: 2vh;
+  background-color: white;
 }
 .listWrapper {
-  width: 60%;
+  width: 70%;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
+  align-content: center;
 }
 .details {
   display: flex;
   flex-direction: column;
-  flex-wrap: wrap;
 }
 .detail {
+  margin-bottom: -4vh;
+  display: flex;
+}
+
+.btn {
   display: flex;
 }

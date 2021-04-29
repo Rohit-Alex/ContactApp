@@ -1,5 +1,7 @@
 import React from "react";
 import AccountCircleIcon from "@material-ui/icons/AccountCircle";
+import EditIcon from "@material-ui/icons/Edit";
+import DeleteIcon from "@material-ui/icons/Delete";
 import "./style.css";
 
 import { useHistory } from "react-router";
@@ -9,7 +11,7 @@ const List = ({ item, deleteitem, setEditItem }) => {
     <div className="fullWrap">
       <div className="listWrapper">
         <div className="dp">
-          <AccountCircleIcon />
+          <AccountCircleIcon style={{ fontSize: "2.5rem" }} />
         </div>
         <div className="details">
           <div className="detail">
@@ -23,18 +25,18 @@ const List = ({ item, deleteitem, setEditItem }) => {
         </div>
 
         <div className="btn">
-          <button className="delete" onClick={() => deleteitem(item.id)}>
-            delete
-          </button>
-          <button
+          <div className="delete" onClick={() => deleteitem(item.id)}>
+            <DeleteIcon style={{ fontSize: "2rem", cursor: "pointer" }} />
+          </div>
+          <div
             className="edit"
             onClick={() => {
               setEditItem(item);
-              history.push("/edit");
+              history.push("/form");
             }}
           >
-            Edit
-          </button>
+            <EditIcon style={{ fontSize: "2rem", cursor: "pointer" }} />
+          </div>
         </div>
       </div>
     </div>
